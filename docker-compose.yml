@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  anime-gallery:
+    container_name: anime-gallery
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - NODE_ENV=development
+    volumes:
+      - .:/var/app:cached
+      - anime-gallery-node-modules:/var/app/node_modules
+    working_dir: /var/app
+    ports:
+      - 4444:3000
+    tty: true
+    environment:
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true # Hot Reload を有効化
+      - APP_ENV=local
+    networks:
+      - anime-gallery-net
+    command: npm run dev
+
+volumes:
+  # Volume Trick用の匿名ボリューム
+  # node_modulesをホストと切り離すために使用する
+  anime-gallery-node-modules:
+
+networks:
+  anime-gallery-net:

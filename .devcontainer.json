@@ -1,0 +1,7 @@
+{
+  "name": "app",
+  "dockerComposeFile": "./docker-compose.yml",
+  "service": "anime-gallery",
+  "workspaceFolder": "/var/app",
+  "extensions": ["dbaeumer.vscode-eslint", "esbenp.prettier-vscode"]
+}
