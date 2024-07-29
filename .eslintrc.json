@@ -1,0 +1,31 @@
+{
+  "extends": "next/core-web-vitals",
+  "rules": {
+    "no-restricted-syntax": [
+      "error",
+      {
+        // TypeScript enum 使用はリスクが伴うため禁止
+        "selector": "TSEnumDeclaration",
+        "message": "Don't declare enums"
+      }
+    ],
+    "no-restricted-imports": [
+      "error",
+      {
+        // インポートパスを相対パスで書くことを禁止
+        "patterns": ["./", "../"]
+      }
+    ]
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    },
+    // baseUrlを使用したパス解決
+    "import/resolver": {
+      "node": {
+        "paths": ["src"]
+      }
+    }
+  }
+}
