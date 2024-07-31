@@ -30,10 +30,10 @@ const theme = createTheme({
         root: {
           // クリック時の透明化を防ぐための設定
           '&:active': {
-            backgroundColor: undefined, // 例: クリック時に背景色を変更
+            backgroundColor: undefined,
           },
           '&:hover': {
-            backgroundColor: undefined, // 例: クリック時に背景色を変更
+            backgroundColor: undefined,
           },
         },
       },

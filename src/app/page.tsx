@@ -18,7 +18,7 @@ export default function Index() {
       </Typography>
       <Box sx={{ display: 'flex', gap: '1.6rem', overflowX: 'auto' }}>
         <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-          <Image src="/sample_anime.jpg" alt="anime" width={64} height={80} />
+          <Image src="/sample_anime.jpg" alt="anime" width={64} height={80} priority />
           <Box
             sx={{
               display: 'flex',
@@ -30,11 +30,11 @@ export default function Index() {
               height: '1.8rem',
             }}
           >
-            <Image src="/favorite.svg" alt="anime" width={16} height={16} />
+            <Image src="/favorite.svg" alt="anime" width={16} height={16} priority />
           </Box>
         </Box>
         <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-          <Image src="/sample_anime.jpg" alt="anime" width={64} height={80} />
+          <Image src="/sample_anime.jpg" alt="anime" width={64} height={80} priority />
           <Box
             sx={{
               display: 'flex',
@@ -51,6 +51,7 @@ export default function Index() {
               alt="anime"
               width={16}
               height={16}
+              priority
               style={{
                 filter:
                   'brightness(0) saturate(100%) invert(97%) sepia(6%) saturate(53%) hue-rotate(332deg) brightness(114%) contrast(80%)',
@@ -59,7 +60,7 @@ export default function Index() {
           </Box>
         </Box>
         <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-          <Image src="/sample_anime.jpg" alt="anime" width={64} height={80} />
+          <Image src="/sample_anime.jpg" alt="anime" width={64} height={80} priority />
           <Box
             sx={{
               display: 'flex',
@@ -76,6 +77,7 @@ export default function Index() {
               alt="anime"
               width={16}
               height={16}
+              priority
               style={{
                 filter:
                   'brightness(0) saturate(100%) invert(97%) sepia(6%) saturate(53%) hue-rotate(332deg) brightness(114%) contrast(80%)',
@@ -84,7 +86,7 @@ export default function Index() {
           </Box>
         </Box>
         <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-          <Image src="/sample_anime.jpg" alt="anime" width={64} height={80} />
+          <Image src="/sample_anime.jpg" alt="anime" width={64} height={80} priority />
           <Box
             sx={{
               display: 'flex',
@@ -101,6 +103,7 @@ export default function Index() {
               alt="anime"
               width={16}
               height={16}
+              priority
               style={{
                 filter:
                   'brightness(0) saturate(100%) invert(97%) sepia(6%) saturate(53%) hue-rotate(332deg) brightness(114%) contrast(80%)',
@@ -109,7 +112,7 @@ export default function Index() {
           </Box>
         </Box>
         <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-          <Image src="/sample_anime.jpg" alt="anime" width={64} height={80} />
+          <Image src="/sample_anime.jpg" alt="anime" width={64} height={80} priority />
           <Box
             sx={{
               display: 'flex',
@@ -126,6 +129,7 @@ export default function Index() {
               alt="anime"
               width={16}
               height={16}
+              priority
               style={{
                 filter:
                   'brightness(0) saturate(100%) invert(97%) sepia(6%) saturate(53%) hue-rotate(332deg) brightness(114%) contrast(80%)',
@@ -139,7 +143,7 @@ export default function Index() {
       </Typography>
       <Box sx={{ display: 'flex', gap: '1rem 1.6rem', flexWrap: 'wrap', justifyContent: 'center' }}>
         <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-          <Image src="/sample_anime.jpg" alt="anime" width={88} height={110} />
+          <Image src="/sample_anime.jpg" alt="anime" width={88} height={110} priority />
           <Box
             sx={{
               display: 'flex',
@@ -156,6 +160,7 @@ export default function Index() {
               alt="anime"
               width={16}
               height={16}
+              priority
               style={{
                 filter:
                   'brightness(0) saturate(100%) invert(97%) sepia(6%) saturate(53%) hue-rotate(332deg) brightness(114%) contrast(80%)',
@@ -164,7 +169,7 @@ export default function Index() {
           </Box>
         </Box>
         <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-          <Image src="/sample_anime.jpg" alt="anime" width={88} height={110} />
+          <Image src="/sample_anime.jpg" alt="anime" width={88} height={110} priority />
           <Box
             sx={{
               display: 'flex',
@@ -181,6 +186,7 @@ export default function Index() {
               alt="anime"
               width={16}
               height={16}
+              priority
               style={{
                 filter:
                   'brightness(0) saturate(100%) invert(97%) sepia(6%) saturate(53%) hue-rotate(332deg) brightness(114%) contrast(80%)',
@@ -189,7 +195,7 @@ export default function Index() {
           </Box>
         </Box>
         <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-          <Image src="/sample_anime.jpg" alt="anime" width={88} height={110} />
+          <Image src="/sample_anime.jpg" alt="anime" width={88} height={110} priority />
           <Box
             sx={{
               display: 'flex',
@@ -206,6 +212,7 @@ export default function Index() {
               alt="anime"
               width={16}
               height={16}
+              priority
               style={{
                 filter:
                   'brightness(0) saturate(100%) invert(97%) sepia(6%) saturate(53%) hue-rotate(332deg) brightness(114%) contrast(80%)',
@@ -214,7 +221,7 @@ export default function Index() {
           </Box>
         </Box>
         <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-          <Image src="/sample_anime.jpg" alt="anime" width={88} height={110} />
+          <Image src="/sample_anime.jpg" alt="anime" width={88} height={110} priority />
           <Box
             sx={{
               display: 'flex',
@@ -231,6 +238,7 @@ export default function Index() {
               alt="anime"
               width={16}
               height={16}
+              priority
               style={{
                 filter:
                   'brightness(0) saturate(100%) invert(97%) sepia(6%) saturate(53%) hue-rotate(332deg) brightness(114%) contrast(80%)',
@@ -239,7 +247,7 @@ export default function Index() {
           </Box>
         </Box>
         <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-          <Image src="/sample_anime.jpg" alt="anime" width={88} height={110} />
+          <Image src="/sample_anime.jpg" alt="anime" width={88} height={110} priority />
           <Box
             sx={{
               display: 'flex',
@@ -256,6 +264,7 @@ export default function Index() {
               alt="anime"
               width={16}
               height={16}
+              priority
               style={{
                 filter:
                   'brightness(0) saturate(100%) invert(97%) sepia(6%) saturate(53%) hue-rotate(332deg) brightness(114%) contrast(80%)',
@@ -264,7 +273,7 @@ export default function Index() {
           </Box>
         </Box>
         <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-          <Image src="/sample_anime.jpg" alt="anime" width={88} height={110} />
+          <Image src="/sample_anime.jpg" alt="anime" width={88} height={110} priority />
           <Box
             sx={{
               display: 'flex',
@@ -281,6 +290,7 @@ export default function Index() {
               alt="anime"
               width={16}
               height={16}
+              priority
               style={{
                 filter:
                   'brightness(0) saturate(100%) invert(97%) sepia(6%) saturate(53%) hue-rotate(332deg) brightness(114%) contrast(80%)',
@@ -289,7 +299,7 @@ export default function Index() {
           </Box>
         </Box>
         <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-          <Image src="/sample_anime.jpg" alt="anime" width={88} height={110} />
+          <Image src="/sample_anime.jpg" alt="anime" width={88} height={110} priority />
           <Box
             sx={{
               display: 'flex',
@@ -306,6 +316,7 @@ export default function Index() {
               alt="anime"
               width={16}
               height={16}
+              priority
               style={{
                 filter:
                   'brightness(0) saturate(100%) invert(97%) sepia(6%) saturate(53%) hue-rotate(332deg) brightness(114%) contrast(80%)',
@@ -314,7 +325,7 @@ export default function Index() {
           </Box>
         </Box>
         <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-          <Image src="/sample_anime.jpg" alt="anime" width={88} height={110} />
+          <Image src="/sample_anime.jpg" alt="anime" width={88} height={110} priority />
           <Box
             sx={{
               display: 'flex',
@@ -331,6 +342,7 @@ export default function Index() {
               alt="anime"
               width={16}
               height={16}
+              priority
               style={{
                 filter:
                   'brightness(0) saturate(100%) invert(97%) sepia(6%) saturate(53%) hue-rotate(332deg) brightness(114%) contrast(80%)',
@@ -339,7 +351,7 @@ export default function Index() {
           </Box>
         </Box>
         <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-          <Image src="/sample_anime.jpg" alt="anime" width={88} height={110} />
+          <Image src="/sample_anime.jpg" alt="anime" width={88} height={110} priority />
           <Box
             sx={{
               display: 'flex',
@@ -356,6 +368,7 @@ export default function Index() {
               alt="anime"
               width={16}
               height={16}
+              priority
               style={{
                 filter:
                   'brightness(0) saturate(100%) invert(97%) sepia(6%) saturate(53%) hue-rotate(332deg) brightness(114%) contrast(80%)',
@@ -373,7 +386,7 @@ export default function Index() {
       >
         <NextContentsButton>
           <Typography sx={{ fontSize: '1.4rem', color: Colors.gray50 }}>続きを見る</Typography>
-          <Image src="/next_contents.svg" alt="next" width={10} height={8} style={{ marginTop: '0.1rem' }} />
+          <Image src="/next_contents.svg" alt="next" width={10} height={8} style={{ marginTop: '0.1rem' }} priority />
         </NextContentsButton>
       </Box>
     </Container>
