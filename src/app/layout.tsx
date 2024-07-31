@@ -1,5 +1,5 @@
 import ClientLayout from '@/common/ClientSideLayout';
-import { AppBar, Container } from '@mui/material';
+import { AppBar, Box } from '@mui/material';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -11,15 +11,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="ja">
       <ClientLayout>
-        <Container
+        <Box
           sx={{
-            height: '100dvh',
+            minHeight: '100dvh',
             background: 'linear-gradient(#E8F1FE, #FBF5E0)',
-            padding: { xs: '0', sm: '0' },
+            paddingTop: '3.2rem',
           }}
         >
           <AppBar
-            position="sticky"
+            position="fixed"
             sx={{
               flexDirection: 'row',
               justifyContent: 'flex-end',
@@ -34,7 +34,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <img src="/burger_menu.svg" alt="menu" width={18} height={12} />
           </AppBar>
           {children}
-        </Container>
+        </Box>
       </ClientLayout>
     </html>
   );

@@ -12,7 +12,7 @@ const ClientSideLayout = ({ children }: { children: React.ReactNode }) => {
       <AppRouterCacheProvider>
         <ThemeProvider theme={theme}>
           <CssBaseline />
-          <GlobalStyles styles={{ html: { fontSize: '62.5%' } }} />
+          <GlobalStyles styles={{ html: { fontSize: '62.5%', background: 'linear-gradient(#E8F1FE, #FBF5E0)' } }} />
           {children}
         </ThemeProvider>
       </AppRouterCacheProvider>
