@@ -1,7 +1,6 @@
 import ClientLayout from '@/common/ClientSideLayout';
 import { AppBar, Container } from '@mui/material';
 import type { Metadata } from 'next';
-import Image from 'next/image';
 
 export const metadata: Metadata = {
   title: 'アニメギャラリー',
@@ -32,7 +31,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               paddingRight: '1.6rem',
             }}
           >
-            <Image src="/burger_menu.svg" alt="menu" width={18} height={12} priority />
+            <img src="/burger_menu.svg" alt="menu" width={18} height={12} />
           </AppBar>
           {children}
         </Container>
