@@ -6,6 +6,9 @@ import { ThemeProvider } from '@emotion/react';
 import { CssBaseline, GlobalStyles } from '@mui/material';
 import * as React from 'react';
 
+/**
+ * ルートlayoutのクライアントサイド処理
+ */
 const ClientSideLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <body>

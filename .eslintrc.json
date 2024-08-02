@@ -15,7 +15,8 @@
         // インポートパスを相対パスで書くことを禁止
         "patterns": ["./", "../"]
       }
-    ]
+    ],
+    "@next/next/no-img-element": "off"
   },
   "settings": {
     "react": {

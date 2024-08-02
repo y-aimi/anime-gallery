@@ -24,21 +24,6 @@ const theme = createTheme({
       main: '#ff1744',
     },
   },
-  components: {
-    MuiButton: {
-      styleOverrides: {
-        root: {
-          // クリック時の透明化を防ぐための設定
-          '&:active': {
-            backgroundColor: undefined,
-          },
-          '&:hover': {
-            backgroundColor: undefined,
-          },
-        },
-      },
-    },
-  },
 });
 
 export default theme;
