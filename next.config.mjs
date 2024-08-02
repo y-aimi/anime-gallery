@@ -18,7 +18,7 @@ async function createNextConfig() {
     // ローカルだと不要なwarningが出るためdisable
     disable: process.env.APP_ENV === 'local',
   })({
-    output: 'export', // 静的エクスポート有効設定
+    output: 'standalone', // SSR設定
     reactStrictMode: true,
     env: {
       ...config,
