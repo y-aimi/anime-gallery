@@ -69,12 +69,14 @@ export const SeasonAnime = () => {
         <Box sx={{ display: 'flex', gap: '1rem 1.6rem', flexWrap: 'wrap', justifyContent: 'center' }}>
           {seasonAnime?.data?.slice(0, dispSeasonAnimeCount).map((anime) => (
             <Box key={anime.mal_id} sx={{ display: 'flex', flexDirection: 'column' }}>
-              <Box
-                component="img"
-                alt={anime.title}
-                src={anime.images.jpg.image_url}
-                sx={{ width: '8.8rem', height: '11rem' }}
-              />
+              <Box component="a" href={anime.url} target="_blank" sx={{ display: 'flex' }}>
+                <Box
+                  component="img"
+                  alt={anime.title}
+                  src={anime.images.jpg.image_url}
+                  sx={{ width: '8.8rem', height: '11rem' }}
+                />
+              </Box>
               <Box
                 sx={{
                   display: 'flex',

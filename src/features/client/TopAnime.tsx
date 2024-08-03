@@ -53,12 +53,14 @@ export const TopAnime = () => {
         <Box sx={{ display: 'flex', gap: '1.6rem', overflowX: 'auto' }}>
           {topAnime?.data?.map((anime) => (
             <Box key={anime.mal_id} sx={{ display: 'flex', flexDirection: 'column' }}>
-              <Box
-                component="img"
-                alt={anime.title}
-                src={anime.images.jpg.image_url}
-                sx={{ width: '6.4rem', height: '8.0rem' }}
-              />
+              <Box component="a" href={anime.url} target="_blank" sx={{ display: 'flex' }}>
+                <Box
+                  component="img"
+                  alt={anime.title}
+                  src={anime.images.jpg.image_url}
+                  sx={{ width: '6.4rem', height: '8.0rem' }}
+                />
+              </Box>
               <Box
                 sx={{
                   display: 'flex',
