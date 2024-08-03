@@ -2,7 +2,8 @@
 
 import { Colors } from '@/common/Colors';
 import { Routes } from '@/common/Routes';
-import { AppBar, Box, Drawer, Link, List, ListItem } from '@mui/material';
+import { AppBar, Box, Drawer, List, ListItem } from '@mui/material';
+import Link from 'next/link';
 import { useState } from 'react';
 
 /**
@@ -26,55 +27,63 @@ export const Header = () => {
         </Box>
         <List disablePadding>
           <ListItem sx={{ padding: '1.2rem 1.6rem' }}>
-            <Link
-              href={Routes.index}
-              sx={{
-                fontSize: '1.6rem',
-                fontWeight: 'bold',
-                color: Colors.gray900,
-                textDecorationColor: Colors.gray900,
-              }}
-            >
-              ホーム画面
+            <Link href={Routes.index} onClick={() => setIsOpen(false)}>
+              <Box
+                sx={{
+                  fontSize: '1.6rem',
+                  fontWeight: 'bold',
+                  color: Colors.gray900,
+                  textDecorationColor: Colors.gray900,
+                  textDecoration: 'underline',
+                }}
+              >
+                ホーム画面
+              </Box>
             </Link>
           </ListItem>
           <ListItem sx={{ padding: '1.2rem 1.6rem' }}>
-            <Link
-              href={Routes.searchName}
-              sx={{
-                fontSize: '1.6rem',
-                fontWeight: 'bold',
-                color: Colors.gray900,
-                textDecorationColor: Colors.gray900,
-              }}
-            >
-              名前検索
+            <Link href={Routes.searchName} onClick={() => setIsOpen(false)}>
+              <Box
+                sx={{
+                  fontSize: '1.6rem',
+                  fontWeight: 'bold',
+                  color: Colors.gray900,
+                  textDecorationColor: Colors.gray900,
+                  textDecoration: 'underline',
+                }}
+              >
+                名前検索
+              </Box>
             </Link>
           </ListItem>
           <ListItem sx={{ padding: '1.2rem 1.6rem' }}>
-            <Link
-              href={Routes.index}
-              sx={{
-                fontSize: '1.6rem',
-                fontWeight: 'bold',
-                color: Colors.gray900,
-                textDecorationColor: Colors.gray900,
-              }}
-            >
-              シーズン毎アニメ一覧
+            <Link href={Routes.index} onClick={() => setIsOpen(false)}>
+              <Box
+                sx={{
+                  fontSize: '1.6rem',
+                  fontWeight: 'bold',
+                  color: Colors.gray900,
+                  textDecorationColor: Colors.gray900,
+                  textDecoration: 'underline',
+                }}
+              >
+                シーズン毎アニメ一覧
+              </Box>
             </Link>
           </ListItem>
           <ListItem sx={{ padding: '1.2rem 1.6rem' }}>
-            <Link
-              href={Routes.index}
-              sx={{
-                fontSize: '1.6rem',
-                fontWeight: 'bold',
-                color: Colors.gray900,
-                textDecorationColor: Colors.gray900,
-              }}
-            >
-              マイページ
+            <Link href={Routes.index} onClick={() => setIsOpen(false)}>
+              <Box
+                sx={{
+                  fontSize: '1.6rem',
+                  fontWeight: 'bold',
+                  color: Colors.gray900,
+                  textDecorationColor: Colors.gray900,
+                  textDecoration: 'underline',
+                }}
+              >
+                マイページ_
+              </Box>
             </Link>
           </ListItem>
         </List>

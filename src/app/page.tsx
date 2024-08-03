@@ -1,5 +1,3 @@
-'use client';
-
 import { SeasonAnime } from '@/features/client/SeasonAnime';
 import { TopAnime } from '@/features/client/TopAnime';
 import { Container } from '@mui/material';

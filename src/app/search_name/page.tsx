@@ -1,5 +1,3 @@
-'use client';
-
 import { SearchNameAnime } from '@/features/client/SearchNameAnime';
 import { Container } from '@mui/material';
 
