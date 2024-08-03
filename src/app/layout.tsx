@@ -32,7 +32,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               paddingRight: '1.6rem',
             }}
           >
-            <img src="/burger_menu.svg" alt="menu" width={18} height={12} />
+            <Box component="img" alt="menu" src="/burger_menu.svg" sx={{ width: '2.7rem', height: '1.8rem' }} />
           </AppBar>
           {children}
         </Box>
