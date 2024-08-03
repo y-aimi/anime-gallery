@@ -58,7 +58,7 @@ export const TopAnime = () => {
                   component="img"
                   alt={anime.title}
                   src={anime.images.jpg.image_url}
-                  sx={{ width: '6.4rem', height: '8.0rem' }}
+                  sx={{ width: '6.4rem', height: '8.0rem', objectFit: 'cover' }}
                 />
               </Box>
               <Box

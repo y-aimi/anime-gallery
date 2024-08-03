@@ -74,7 +74,7 @@ export const SeasonAnime = () => {
                   component="img"
                   alt={anime.title}
                   src={anime.images.jpg.image_url}
-                  sx={{ width: '8.8rem', height: '11rem' }}
+                  sx={{ width: '8.8rem', height: '11rem', objectFit: 'cover' }}
                 />
               </Box>
               <Box

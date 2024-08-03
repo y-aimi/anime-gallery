@@ -3,4 +3,5 @@
  */
 export const Routes = {
   index: '/',
+  searchName: '/search_name',
 } as const;

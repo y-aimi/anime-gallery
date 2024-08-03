@@ -1,6 +1,7 @@
 'use client';
 
 import { Colors } from '@/common/Colors';
+import { Routes } from '@/common/Routes';
 import { AppBar, Box, Drawer, Link, List, ListItem } from '@mui/material';
 import { useState } from 'react';
 
@@ -14,10 +15,19 @@ export const Header = () => {
   return (
     <>
       <Drawer anchor="right" open={isOpen} onClose={() => setIsOpen(false)}>
-        <List disablePadding sx={{ margin: '3.4rem 0' }}>
+        <Box sx={{ display: 'flex', justifyContent: 'flex-end', padding: '0.7rem 2.5rem' }}>
+          <Box
+            component="img"
+            alt="close"
+            src="/close.svg"
+            sx={{ width: '1.8rem', height: '1.8rem' }}
+            onClick={() => setIsOpen(false)}
+          />
+        </Box>
+        <List disablePadding>
           <ListItem sx={{ padding: '1.2rem 1.6rem' }}>
             <Link
-              href="/"
+              href={Routes.index}
               sx={{
                 fontSize: '1.6rem',
                 fontWeight: 'bold',
@@ -30,7 +40,7 @@ export const Header = () => {
           </ListItem>
           <ListItem sx={{ padding: '1.2rem 1.6rem' }}>
             <Link
-              href="/"
+              href={Routes.searchName}
               sx={{
                 fontSize: '1.6rem',
                 fontWeight: 'bold',
@@ -43,7 +53,7 @@ export const Header = () => {
           </ListItem>
           <ListItem sx={{ padding: '1.2rem 1.6rem' }}>
             <Link
-              href="/"
+              href={Routes.index}
               sx={{
                 fontSize: '1.6rem',
                 fontWeight: 'bold',
@@ -56,7 +66,7 @@ export const Header = () => {
           </ListItem>
           <ListItem sx={{ padding: '1.2rem 1.6rem' }}>
             <Link
-              href="/"
+              href={Routes.index}
               sx={{
                 fontSize: '1.6rem',
                 fontWeight: 'bold',
@@ -79,7 +89,7 @@ export const Header = () => {
           backdropFilter: 'blur(5px)',
           backgroundColor: 'rgba(255, 255, 255, 0.25)',
           boxShadow: 'none',
-          paddingRight: '1.6rem',
+          paddingRight: '2rem',
         }}
       >
         <Box
