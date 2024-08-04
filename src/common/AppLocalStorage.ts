@@ -4,9 +4,7 @@ import { PersistentDataKey } from '@/hooks/useLocalPersistentState';
 
 /**
  * ローカルストレージ管理クラス
- * ※クラス名とimport名を同一にするためlintオプションでnamespaceの使用を許可する
  */
-// eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace AppLocalStorage {
   /**
    * ローカルストレージに保存するデータのキー名
