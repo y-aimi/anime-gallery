@@ -57,7 +57,7 @@ export const Header = () => {
             </Link>
           </ListItem>
           <ListItem sx={{ padding: '1.2rem 1.6rem' }}>
-            <Link href={Routes.index} onClick={() => setIsOpen(false)}>
+            <Link href={Routes.searchSeasons} onClick={() => setIsOpen(false)}>
               <Box
                 sx={{
                   fontSize: '1.6rem',

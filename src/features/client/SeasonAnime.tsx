@@ -51,7 +51,7 @@ export const SeasonAnime = () => {
           },
         }}
       >
-        2024夏アニメ一覧
+        今シーズンアニメ一覧
       </Typography>
       {loadingSeasonAnime ? (
         <Box sx={{ display: 'flex', gap: '1rem 1.6rem', flexWrap: 'wrap', justifyContent: 'center' }}>
