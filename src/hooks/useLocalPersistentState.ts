@@ -1,6 +1,6 @@
 'use client';
 
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
 
 import { AppLocalStorage } from '@/common/AppLocalStorage';
 
@@ -21,15 +21,20 @@ export const useLocalPersistentState = <T>(
   defaultValue: T,
   key: PersistentDataKey
 ): [state: T, setState: Dispatch<SetStateAction<T>>] => {
-  // 初期値をLocalStorageから取得
-  const [state, setState] = useState<T>(() => {
-    return AppLocalStorage.getPersistentData(key) ?? defaultValue;
-  });
+  const [state, setState] = useState<T>(defaultValue);
 
-  // LocalStorage保存処理
+  // 初期化完了判定フラグ（true：初期化完了）
+  const isInitialized = useRef(false);
+
+  // 永続化処理
   useEffect(() => {
-    AppLocalStorage.setPersistentData(key, state);
-  }, [key, state]);
+    if (isInitialized.current) {
+      AppLocalStorage.setPersistentData(key, state);
+    } else {
+      setState(AppLocalStorage.getPersistentData(key) ?? defaultValue);
+      isInitialized.current = true;
+    }
+  }, [state]);
 
   return [state, setState];
 };
