@@ -15,18 +15,42 @@ export const MyPage = () => {
 
   return (
     <>
-      <Typography
+      <Box
         sx={{
-          fontSize: '1.6rem',
-          fontWeight: 'bold',
-          margin: '1.4rem 0 1.8rem 0',
-          [theme.breakpoints.up('md')]: {
-            fontSize: '2.4rem',
-          },
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
         }}
       >
-        お気に入りアニメ一覧
-      </Typography>
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '1.6rem',
+          }}
+        >
+          <Typography
+            sx={{
+              fontSize: '1.6rem',
+              fontWeight: 'bold',
+              margin: '1.4rem 0 1.8rem 0',
+              [theme.breakpoints.up('md')]: {
+                fontSize: '2.4rem',
+              },
+            }}
+          >
+            お気に入りアニメ一覧
+          </Typography>
+          <Box component="img" alt="sort" src="/sort_button.svg" sx={{ width: '3.2rem', height: '3.2rem' }} />
+        </Box>
+        <Box
+          component="img"
+          alt="trash"
+          src="/trash.svg"
+          sx={{ width: '1.8rem', height: '1.8rem' }}
+          onClick={() => setFavoriteAnimeList([])}
+        />
+      </Box>
       <Box
         sx={{
           display: 'flex',
