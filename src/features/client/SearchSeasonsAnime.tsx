@@ -3,6 +3,7 @@
 import { SearchSeasonAnimeResponse } from '@/api/response/SearchSeasonAnimeResponse';
 import { SeasonsResponse } from '@/api/response/SeasonsResponse';
 import { Colors } from '@/common/Colors';
+import { GlobalContext } from '@/contexts/GlobalContext';
 import { FetchSearchSeasonsAnime, FetchSeasons } from '@/features/FetchAnime';
 import theme from '@/theme';
 import { Season } from '@/types/enum/Season';
@@ -17,12 +18,14 @@ import {
   Typography,
 } from '@mui/material';
 import { Box, styled } from '@mui/system';
-import { MouseEvent, useEffect, useMemo, useState } from 'react';
+import { MouseEvent, useContext, useEffect, useMemo, useState } from 'react';
 
 /**
  * シーズン毎アニメ一覧
  */
 export const SearchSeasonsAnime = () => {
+  const { favoriteAnimeList, setFavoriteAnimeList } = useContext(GlobalContext);
+
   // シーズンデータ
   const [seasons, setSeasons] = useState<SeasonsResponse>();
   // シーズン毎アニメ検索取得データ
@@ -231,9 +234,28 @@ export const SearchSeasonsAnime = () => {
                   sx={{
                     width: '1.6rem',
                     height: '1.6rem',
-                    filter:
-                      'brightness(0) saturate(100%) invert(97%) sepia(6%) saturate(53%) hue-rotate(332deg) brightness(114%) contrast(80%)',
+                    filter: !favoriteAnimeList.some((item) => item.mal_id === anime.mal_id)
+                      ? 'brightness(0) saturate(100%) invert(97%) sepia(6%) saturate(53%) hue-rotate(332deg) brightness(114%) contrast(80%)'
+                      : 'none',
                   }}
+                  onClick={() =>
+                    setFavoriteAnimeList((preState) => {
+                      const isDuplicate = preState.some((item) => item.mal_id === anime.mal_id);
+
+                      if (isDuplicate) {
+                        return preState.filter((item) => item.mal_id !== anime.mal_id);
+                      }
+                      return [
+                        ...preState,
+                        {
+                          mal_id: anime.mal_id,
+                          title: anime.title,
+                          url: anime.url,
+                          image_url: anime.images.jpg.image_url,
+                        },
+                      ];
+                    })
+                  }
                 />
               </Box>
             </Box>

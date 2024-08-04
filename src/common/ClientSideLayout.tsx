@@ -5,6 +5,7 @@ import theme from '@/theme';
 import { ThemeProvider } from '@emotion/react';
 import { CssBaseline, GlobalStyles } from '@mui/material';
 import * as React from 'react';
+import { GlobalContextProvider } from '@/contexts/GlobalContext';
 
 /**
  * ルートlayoutのクライアントサイド処理
@@ -16,7 +17,7 @@ const ClientSideLayout = ({ children }: { children: React.ReactNode }) => {
         <ThemeProvider theme={theme}>
           <CssBaseline />
           <GlobalStyles styles={{ html: { fontSize: '62.5%', background: 'linear-gradient(#E8F1FE, #FBF5E0)' } }} />
-          {children}
+          <GlobalContextProvider>{children}</GlobalContextProvider>
         </ThemeProvider>
       </AppRouterCacheProvider>
     </body>

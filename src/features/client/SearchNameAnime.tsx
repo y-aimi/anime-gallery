@@ -2,16 +2,19 @@
 
 import { SearchNameResponse } from '@/api/response/SearchNameResponse';
 import { Colors } from '@/common/Colors';
+import { GlobalContext } from '@/contexts/GlobalContext';
 import { FetchSearchNameAnime } from '@/features/FetchAnime';
 import theme from '@/theme';
 import { IconButton, InputAdornment, Skeleton, TextField, Typography } from '@mui/material';
 import { Box } from '@mui/system';
-import { ChangeEvent, KeyboardEvent, MouseEvent, useState } from 'react';
+import { ChangeEvent, KeyboardEvent, MouseEvent, useContext, useState } from 'react';
 
 /**
  * 名前検索
  */
 export const SearchNameAnime = () => {
+  const { favoriteAnimeList, setFavoriteAnimeList } = useContext(GlobalContext);
+
   // 名前検索取得データ
   const [searchResults, setSearchResults] = useState<SearchNameResponse>();
   // ローディング判定：名前検索取得データ
@@ -170,9 +173,28 @@ export const SearchNameAnime = () => {
                   sx={{
                     width: '1.6rem',
                     height: '1.6rem',
-                    filter:
-                      'brightness(0) saturate(100%) invert(97%) sepia(6%) saturate(53%) hue-rotate(332deg) brightness(114%) contrast(80%)',
+                    filter: !favoriteAnimeList.some((item) => item.mal_id === anime.mal_id)
+                      ? 'brightness(0) saturate(100%) invert(97%) sepia(6%) saturate(53%) hue-rotate(332deg) brightness(114%) contrast(80%)'
+                      : 'none',
                   }}
+                  onClick={() =>
+                    setFavoriteAnimeList((preState) => {
+                      const isDuplicate = preState.some((item) => item.mal_id === anime.mal_id);
+
+                      if (isDuplicate) {
+                        return preState.filter((item) => item.mal_id !== anime.mal_id);
+                      }
+                      return [
+                        ...preState,
+                        {
+                          mal_id: anime.mal_id,
+                          title: anime.title,
+                          url: anime.url,
+                          image_url: anime.images.jpg.image_url,
+                        },
+                      ];
+                    })
+                  }
                 />
               </Box>
             </Box>

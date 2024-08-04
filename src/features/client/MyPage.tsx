@@ -1,35 +1,17 @@
 'use client';
 
-import { TopAnimeResponse } from '@/api/response/TopAnimeResponse';
 import { Colors } from '@/common/Colors';
 import { GlobalContext } from '@/contexts/GlobalContext';
-import { FetchTopAnime } from '@/features/FetchAnime';
 import theme from '@/theme';
-import { Skeleton, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 import { Box } from '@mui/system';
-import { useContext, useEffect, useState } from 'react';
+import { useContext } from 'react';
 
 /**
- * トップアニメ
+ * マイページ
  */
-export const TopAnime = () => {
+export const MyPage = () => {
   const { favoriteAnimeList, setFavoriteAnimeList } = useContext(GlobalContext);
-
-  // トップアニメ取得データ
-  const [topAnime, setTopAnime] = useState<TopAnimeResponse>();
-  // ローディング判定：トップアニメ取得データ
-  const [loading, setLoading] = useState<boolean>(true);
-
-  // 必要データ取得フック
-  useEffect(() => {
-    const fetch = async () => {
-      const res = await FetchTopAnime();
-      setTopAnime(res);
-      setLoading(false);
-    };
-
-    fetch();
-  }, []);
 
   return (
     <>
@@ -37,31 +19,31 @@ export const TopAnime = () => {
         sx={{
           fontSize: '1.6rem',
           fontWeight: 'bold',
-          margin: '1.4rem 0 0.8rem 0',
+          margin: '1.4rem 0 1.8rem 0',
           [theme.breakpoints.up('md')]: {
             fontSize: '2.4rem',
           },
         }}
       >
-        人気アニメランキング
+        お気に入りアニメ一覧
       </Typography>
-      {loading ? (
-        <Box sx={{ display: 'flex', gap: '1.6rem' }}>
-          <Skeleton variant="rectangular" animation="wave" sx={{ width: '6.4rem', height: '9.6rem' }} />
-          <Skeleton variant="rectangular" animation="wave" sx={{ width: '6.4rem', height: '9.6rem' }} />
-          <Skeleton variant="rectangular" animation="wave" sx={{ width: '6.4rem', height: '9.6rem' }} />
-          <Skeleton variant="rectangular" animation="wave" sx={{ width: '6.4rem', height: '9.6rem' }} />
-        </Box>
-      ) : (
-        <Box sx={{ display: 'flex', gap: '1.6rem', overflowX: 'auto' }}>
-          {topAnime?.data?.map((anime) => (
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+        }}
+      >
+        <Box
+          sx={{ display: 'flex', gap: '1rem 1.6rem', flexWrap: 'wrap', justifyContent: 'center', margin: '1.6rem 0' }}
+        >
+          {favoriteAnimeList?.map((anime) => (
             <Box key={anime.mal_id} sx={{ display: 'flex', flexDirection: 'column' }}>
               <Box component="a" href={anime.url} target="_blank" sx={{ display: 'flex' }}>
                 <Box
                   component="img"
                   alt={anime.title}
-                  src={anime.images.jpg.image_url}
-                  sx={{ width: '6.4rem', height: '8.0rem', objectFit: 'cover' }}
+                  src={anime.image_url}
+                  sx={{ width: '8.8rem', height: '11rem', objectFit: 'cover' }}
                 />
               </Box>
               <Box
@@ -71,7 +53,7 @@ export const TopAnime = () => {
                   alignItems: 'center',
                   paddingRight: '0.1rem',
                   backgroundColor: Colors.white,
-                  width: '6.4rem',
+                  width: '88px',
                   height: '1.8rem',
                 }}
               >
@@ -99,7 +81,7 @@ export const TopAnime = () => {
                           mal_id: anime.mal_id,
                           title: anime.title,
                           url: anime.url,
-                          image_url: anime.images.jpg.image_url,
+                          image_url: anime.image_url,
                         },
                       ];
                     })
@@ -109,7 +91,7 @@ export const TopAnime = () => {
             </Box>
           ))}
         </Box>
-      )}
+      </Box>
     </>
   );
 };
