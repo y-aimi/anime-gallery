@@ -19,7 +19,7 @@ export const SeasonAnime = () => {
   // シーズンアニメ取得データ
   const [seasonAnime, setSeasonAnime] = useState<SeasonAnimeResponse>();
   // ローディング判定：シーズンアニメ取得データ
-  const [loadingSeasonAnime, setLoadingSeasonAnime] = useState<boolean>(true);
+  const [isLoadingSeasonAnime, setIsLoadingSeasonAnime] = useState<boolean>(true);
   // 表示コンテンツ数（シーズンアニメ）
   const [dispSeasonAnimeCount, setDispSeasonAnimeCount] = useState<number>(Const.SEASON_ANIME_DISP_CHUNK);
 
@@ -36,7 +36,7 @@ export const SeasonAnime = () => {
     const fetch = async () => {
       const res = await FetchSeasonAnime();
       setSeasonAnime(res);
-      setLoadingSeasonAnime(false);
+      setIsLoadingSeasonAnime(false);
     };
 
     fetch();
@@ -56,7 +56,7 @@ export const SeasonAnime = () => {
       >
         今シーズンアニメ一覧
       </Typography>
-      {loadingSeasonAnime ? (
+      {isLoadingSeasonAnime ? (
         <Box sx={{ display: 'flex', gap: '1rem 1.6rem', flexWrap: 'wrap', justifyContent: 'center' }}>
           <Skeleton variant="rectangular" animation="wave" sx={{ width: '8.8rem', height: '12.8rem' }} />
           <Skeleton variant="rectangular" animation="wave" sx={{ width: '8.8rem', height: '12.8rem' }} />

@@ -31,7 +31,7 @@ export const SearchSeasonsAnime = () => {
   // シーズン毎アニメ検索取得データ
   const [searchResults, setSearchResults] = useState<SearchSeasonAnimeResponse>();
   // ローディング判定：シーズン毎アニメ検索検索取得データ
-  const [loadingSearchName, setLoadingSearchName] = useState<boolean>(false);
+  const [isLoadingSearchName, setIsLoadingSearchName] = useState<boolean>(false);
   // 検索年
   const [searchYear, setSearchYear] = useState<string>('');
   // 検索シーズン
@@ -61,12 +61,12 @@ export const SearchSeasonsAnime = () => {
     // 空文字を拒否
     if (!searchYear.trim() || !searchSeason.trim()) return;
 
-    setLoadingSearchName(true);
+    setIsLoadingSearchName(true);
 
     const fetch = async () => {
       const res = await FetchSearchSeasonsAnime(searchYear, searchSeason);
       setSearchResults(res);
-      setLoadingSearchName(false);
+      setIsLoadingSearchName(false);
     };
 
     fetch();
@@ -188,7 +188,7 @@ export const SearchSeasonsAnime = () => {
           検索
         </SearchButton>
       </Box>
-      {loadingSearchName ? (
+      {isLoadingSearchName ? (
         <Box
           sx={{ display: 'flex', gap: '1rem 1.6rem', flexWrap: 'wrap', justifyContent: 'center', margin: '1.6rem 0' }}
         >

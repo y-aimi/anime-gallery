@@ -3,7 +3,7 @@
 import { Colors } from '@/common/Colors';
 import { GlobalContext } from '@/contexts/GlobalContext';
 import theme from '@/theme';
-import { FavoriteAnime } from '@/types/enum/FavoriteAnime';
+import { FavoriteAnime } from '@/types/FavoriteAnime';
 import { Button, Dialog, DialogActions, DialogTitle, Menu, MenuItem, Snackbar, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import { MouseEvent, useContext, useState } from 'react';
@@ -18,10 +18,11 @@ export const MyPage = () => {
   const [isOpenSnackbar, setIsOpenSnackbar] = useState<boolean>(false);
 
   // 削除ダイアログのが表示されているかどうか
-  const [openDialog, setOpenDialog] = useState<boolean>(false);
+  const [isOpenDialog, setIsOpenDialog] = useState<boolean>(false);
 
   // ぶら下げる元のElement
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+
   // ソートメニューが開いているかどうか
   const isOpenSort = Boolean(anchorEl);
 
@@ -44,7 +45,7 @@ export const MyPage = () => {
    * 削除処理
    */
   const handleRemove = () => {
-    setOpenDialog(false);
+    setIsOpenDialog(false);
     setFavoriteAnimeList([]);
     setIsOpenSnackbar(true);
   };
@@ -53,7 +54,7 @@ export const MyPage = () => {
    * 削除キャンセル処理
    */
   const handleCloseDialog = () => {
-    setOpenDialog(false);
+    setIsOpenDialog(false);
   };
 
   /**
@@ -113,7 +114,7 @@ export const MyPage = () => {
           alt="trash"
           src="/trash.svg"
           sx={{ width: '1.8rem', height: '1.8rem' }}
-          onClick={() => setOpenDialog(true)}
+          onClick={() => setIsOpenDialog(true)}
         />
       </Box>
       <Box
@@ -182,7 +183,7 @@ export const MyPage = () => {
           ))}
         </Box>
       </Box>
-      <Dialog open={openDialog} onClose={handleCloseDialog} aria-labelledby="dialog-title">
+      <Dialog open={isOpenDialog} onClose={handleCloseDialog} aria-labelledby="dialog-title">
         <DialogTitle
           id="dialog-title"
           sx={{

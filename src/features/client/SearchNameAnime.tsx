@@ -18,7 +18,7 @@ export const SearchNameAnime = () => {
   // 名前検索取得データ
   const [searchResults, setSearchResults] = useState<SearchNameResponse>();
   // ローディング判定：名前検索取得データ
-  const [loadingSearchName, setLoadingSearchName] = useState<boolean>(false);
+  const [isLoadingSearchName, setIsLoadingSearchName] = useState<boolean>(false);
   // 検索テキスト
   const [searchText, setSearchText] = useState<string>('');
 
@@ -29,12 +29,12 @@ export const SearchNameAnime = () => {
     // 空文字を拒否
     if (!searchText.trim()) return;
 
-    setLoadingSearchName(true);
+    setIsLoadingSearchName(true);
 
     const fetch = async () => {
       const res = await FetchSearchNameAnime(searchText);
       setSearchResults(res);
-      setLoadingSearchName(false);
+      setIsLoadingSearchName(false);
     };
 
     fetch();
@@ -127,7 +127,7 @@ export const SearchNameAnime = () => {
           }}
         />
       </Box>
-      {loadingSearchName ? (
+      {isLoadingSearchName ? (
         <Box
           sx={{ display: 'flex', gap: '1rem 1.6rem', flexWrap: 'wrap', justifyContent: 'center', margin: '1.6rem 0' }}
         >

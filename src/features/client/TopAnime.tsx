@@ -18,14 +18,14 @@ export const TopAnime = () => {
   // トップアニメ取得データ
   const [topAnime, setTopAnime] = useState<TopAnimeResponse>();
   // ローディング判定：トップアニメ取得データ
-  const [loading, setLoading] = useState<boolean>(true);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   // 必要データ取得フック
   useEffect(() => {
     const fetch = async () => {
       const res = await FetchTopAnime();
       setTopAnime(res);
-      setLoading(false);
+      setIsLoading(false);
     };
 
     fetch();
@@ -45,7 +45,7 @@ export const TopAnime = () => {
       >
         人気アニメランキング
       </Typography>
-      {loading ? (
+      {isLoading ? (
         <Box sx={{ display: 'flex', gap: '1.6rem' }}>
           <Skeleton variant="rectangular" animation="wave" sx={{ width: '6.4rem', height: '9.6rem' }} />
           <Skeleton variant="rectangular" animation="wave" sx={{ width: '6.4rem', height: '9.6rem' }} />

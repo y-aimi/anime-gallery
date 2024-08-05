@@ -2,7 +2,7 @@
 
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
 
-import { AppLocalStorage } from '@/common/AppLocalStorage';
+import { AppLocalStorage } from '@/util/AppLocalStorage';
 
 /**
  * 永続データのキー名

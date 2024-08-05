@@ -1,7 +1,7 @@
 'use client';
 
 import { useLocalPersistentState } from '@/hooks/useLocalPersistentState';
-import { FavoriteAnime } from '@/types/enum/FavoriteAnime';
+import { FavoriteAnime } from '@/types/FavoriteAnime';
 import { ReactNode, SetStateAction, createContext, useContext } from 'react';
 
 /** アプリ共通データ管理用Context */
