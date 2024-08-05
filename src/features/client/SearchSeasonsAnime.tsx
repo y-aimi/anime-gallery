@@ -219,14 +219,25 @@ export const SearchSeasonsAnime = () => {
               <Box
                 sx={{
                   display: 'flex',
-                  justifyContent: 'flex-end',
+                  justifyContent: 'space-between',
                   alignItems: 'center',
                   paddingRight: '0.1rem',
                   backgroundColor: Colors.white,
-                  width: '88px',
+                  width: '8.8rem',
                   height: '1.8rem',
                 }}
               >
+                <Typography
+                  sx={{
+                    textOverflow: 'ellipsis',
+                    overflow: 'hidden',
+                    whiteSpace: 'nowrap',
+                    fontSize: '1rem',
+                    color: Colors.gray900,
+                  }}
+                >
+                  {anime.title_japanese}
+                </Typography>
                 <Box
                   component="img"
                   alt="fav"
