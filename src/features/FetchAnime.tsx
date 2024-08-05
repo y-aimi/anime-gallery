@@ -1,6 +1,7 @@
 'use server';
 
 import { ApiPaths } from '@/api/ApiPaths';
+import { RandomAnimeResponse } from '@/api/response/RandomAnimeResponse';
 import { SearchNameResponse } from '@/api/response/SearchNameResponse';
 import { SearchSeasonAnimeResponse } from '@/api/response/SearchSeasonAnimeResponse';
 import { SeasonAnimeResponse } from '@/api/response/SeasonAnimeResponse';
@@ -8,12 +9,24 @@ import { SeasonsResponse } from '@/api/response/SeasonsResponse';
 import { TopAnimeResponse } from '@/api/response/TopAnimeResponse';
 
 /**
+ * ランダムアニメ取得処理
+ *
+ * @returns RandomAnimeResponse
+ */
+export const FetchRandomAnime = async () => {
+  const res = await fetch(ApiPaths.randomAnime, { cache: 'no-store' });
+  const resJson: RandomAnimeResponse = await res.json();
+
+  return resJson;
+};
+
+/**
  * トップアニメ取得処理
  *
  * @returns TopAnimeResponse
  */
 export const FetchTopAnime = async () => {
-  const res = await fetch(ApiPaths.topAnime);
+  const res = await fetch(ApiPaths.topAnime, { cache: 'no-store' });
   const resJson: TopAnimeResponse = await res.json();
 
   return resJson;
@@ -25,7 +38,7 @@ export const FetchTopAnime = async () => {
  * @returns SeasonAnimeResponse
  */
 export const FetchSeasonAnime = async () => {
-  const res = await fetch(ApiPaths.SeasonAnime);
+  const res = await fetch(ApiPaths.SeasonAnime, { cache: 'no-store' });
   const resJson: SeasonAnimeResponse = await res.json();
 
   return resJson;

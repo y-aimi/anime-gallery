@@ -20,6 +20,30 @@ async function createNextConfig() {
   })({
     output: 'standalone', // SSR設定
     reactStrictMode: true,
+    images: {
+      remotePatterns: [
+        {
+          protocol: 'https',
+          hostname: 'api.jikan.moe',
+          port: '',
+        },
+        {
+          protocol: 'https',
+          hostname: 'cdn.myanimelist.net',
+          port: '',
+        },
+        {
+          protocol: 'https',
+          hostname: 'myanimelist.net',
+          port: '',
+        },
+        {
+          protocol: 'https',
+          hostname: 'localhost',
+          port: '4444',
+        },
+      ],
+    },
     env: {
       ...config,
     },

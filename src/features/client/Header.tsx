@@ -27,19 +27,20 @@ export const Header = () => {
         </Box>
         <List disablePadding>
           <ListItem sx={{ padding: '1.2rem 1.6rem' }}>
-            <Link href={Routes.index} onClick={() => setIsOpen(false)}>
-              <Box
-                sx={{
-                  fontSize: '1.6rem',
-                  fontWeight: 'bold',
-                  color: Colors.gray900,
-                  textDecorationColor: Colors.gray900,
-                  textDecoration: 'underline',
-                }}
-              >
-                ホーム画面
-              </Box>
-            </Link>
+            <Box
+              component="a"
+              href={Routes.index}
+              sx={{
+                fontSize: '1.6rem',
+                fontWeight: 'bold',
+                color: Colors.gray900,
+                textDecorationColor: Colors.gray900,
+                textDecoration: 'underline',
+              }}
+              onClick={() => setIsOpen(false)}
+            >
+              ホーム画面
+            </Box>
           </ListItem>
           <ListItem sx={{ padding: '1.2rem 1.6rem' }}>
             <Link href={Routes.searchName} onClick={() => setIsOpen(false)}>

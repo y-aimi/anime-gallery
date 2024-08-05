@@ -1,4 +1,7 @@
 export const ApiPaths = {
+  /** ランダムアニメ取得API */
+  randomAnime: 'https://api.jikan.moe/v4/random/anime',
+
   /** トップアニメ取得API */
   topAnime: 'https://api.jikan.moe/v4/top/anime',
 

@@ -4,43 +4,27 @@ import { SeasonAnimeResponse } from '@/api/response/SeasonAnimeResponse';
 import { Colors } from '@/common/Colors';
 import { Const } from '@/common/Const';
 import { GlobalContext } from '@/contexts/GlobalContext';
-import { FetchSeasonAnime } from '@/features/FetchAnime';
 import theme from '@/theme';
-import { Button, Skeleton, Typography } from '@mui/material';
+import { Button, Typography } from '@mui/material';
 import { Box, styled } from '@mui/system';
-import { useContext, useEffect, useMemo, useState } from 'react';
+import { useContext, useMemo, useState } from 'react';
 
 /**
  * シーズンアニメ
  */
-export const SeasonAnime = () => {
+export const SeasonAnime = (seasonAnimeData: SeasonAnimeResponse) => {
   const { favoriteAnimeList, setFavoriteAnimeList } = useContext(GlobalContext);
 
-  // シーズンアニメ取得データ
-  const [seasonAnime, setSeasonAnime] = useState<SeasonAnimeResponse>();
-  // ローディング判定：シーズンアニメ取得データ
-  const [isLoadingSeasonAnime, setIsLoadingSeasonAnime] = useState<boolean>(true);
   // 表示コンテンツ数（シーズンアニメ）
   const [dispSeasonAnimeCount, setDispSeasonAnimeCount] = useState<number>(Const.SEASON_ANIME_DISP_CHUNK);
 
   // コンテンツ数（シーズンアニメ）
   const seasonAnimeTotalCount: number = useMemo(() => {
-    if (seasonAnime?.data === undefined) {
+    if (seasonAnimeData?.data === undefined) {
       return 0;
     }
-    return seasonAnime.data.length;
-  }, [seasonAnime]);
-
-  // 必要データ取得フック
-  useEffect(() => {
-    const fetch = async () => {
-      const res = await FetchSeasonAnime();
-      setSeasonAnime(res);
-      setIsLoadingSeasonAnime(false);
-    };
-
-    fetch();
-  }, []);
+    return seasonAnimeData.data.length;
+  }, [seasonAnimeData]);
 
   return (
     <>
@@ -56,88 +40,75 @@ export const SeasonAnime = () => {
       >
         今シーズンアニメ一覧
       </Typography>
-      {isLoadingSeasonAnime ? (
-        <Box sx={{ display: 'flex', gap: '1rem 1.6rem', flexWrap: 'wrap', justifyContent: 'center' }}>
-          <Skeleton variant="rectangular" animation="wave" sx={{ width: '8.8rem', height: '12.8rem' }} />
-          <Skeleton variant="rectangular" animation="wave" sx={{ width: '8.8rem', height: '12.8rem' }} />
-          <Skeleton variant="rectangular" animation="wave" sx={{ width: '8.8rem', height: '12.8rem' }} />
-          <Skeleton variant="rectangular" animation="wave" sx={{ width: '8.8rem', height: '12.8rem' }} />
-          <Skeleton variant="rectangular" animation="wave" sx={{ width: '8.8rem', height: '12.8rem' }} />
-          <Skeleton variant="rectangular" animation="wave" sx={{ width: '8.8rem', height: '12.8rem' }} />
-          <Skeleton variant="rectangular" animation="wave" sx={{ width: '8.8rem', height: '12.8rem' }} />
-          <Skeleton variant="rectangular" animation="wave" sx={{ width: '8.8rem', height: '12.8rem' }} />
-          <Skeleton variant="rectangular" animation="wave" sx={{ width: '8.8rem', height: '12.8rem' }} />
-        </Box>
-      ) : (
-        <Box sx={{ display: 'flex', gap: '1rem 1.6rem', flexWrap: 'wrap', justifyContent: 'center' }}>
-          {seasonAnime?.data?.slice(0, dispSeasonAnimeCount).map((anime) => (
-            <Box key={anime.mal_id} sx={{ display: 'flex', flexDirection: 'column' }}>
-              <Box component="a" href={anime.url} target="_blank" sx={{ display: 'flex' }}>
-                <Box
-                  component="img"
-                  alt={anime.title}
-                  src={anime.images.jpg.image_url}
-                  sx={{ width: '8.8rem', height: '11rem', objectFit: 'cover' }}
-                />
-              </Box>
+
+      <Box sx={{ display: 'flex', gap: '1rem 1.6rem', flexWrap: 'wrap', justifyContent: 'center' }}>
+        {seasonAnimeData?.data?.slice(0, dispSeasonAnimeCount).map((anime) => (
+          <Box key={anime.mal_id} sx={{ display: 'flex', flexDirection: 'column' }}>
+            <Box component="a" href={anime.url} target="_blank" sx={{ display: 'flex' }}>
               <Box
+                component="img"
+                alt={anime.title}
+                src={anime.images.jpg.image_url}
+                sx={{ width: '8.8rem', height: '11rem', objectFit: 'cover' }}
+              />
+            </Box>
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                paddingRight: '0.1rem',
+                backgroundColor: Colors.white,
+                width: '8.8rem',
+                height: '1.8rem',
+              }}
+            >
+              <Typography
                 sx={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                  paddingRight: '0.1rem',
-                  backgroundColor: Colors.white,
-                  width: '8.8rem',
-                  height: '1.8rem',
+                  textOverflow: 'ellipsis',
+                  overflow: 'hidden',
+                  whiteSpace: 'nowrap',
+                  fontSize: '1rem',
+                  color: Colors.gray900,
                 }}
               >
-                <Typography
-                  sx={{
-                    textOverflow: 'ellipsis',
-                    overflow: 'hidden',
-                    whiteSpace: 'nowrap',
-                    fontSize: '1rem',
-                    color: Colors.gray900,
-                  }}
-                >
-                  {anime.title_japanese}
-                </Typography>
-                <Box
-                  component="img"
-                  alt="fav"
-                  src="/favorite.svg"
-                  sx={{
-                    width: '1.6rem',
-                    height: '1.6rem',
-                    filter: !favoriteAnimeList.some((item) => item.mal_id === anime.mal_id)
-                      ? 'brightness(0) saturate(100%) invert(97%) sepia(6%) saturate(53%) hue-rotate(332deg) brightness(114%) contrast(80%)'
-                      : 'none',
-                  }}
-                  onClick={() =>
-                    setFavoriteAnimeList((preState) => {
-                      const isDuplicate = preState.some((item) => item.mal_id === anime.mal_id);
+                {anime.title_japanese}
+              </Typography>
+              <Box
+                component="img"
+                alt="fav"
+                src="/favorite.svg"
+                sx={{
+                  width: '1.6rem',
+                  height: '1.6rem',
+                  filter: !favoriteAnimeList.some((item) => item.mal_id === anime.mal_id)
+                    ? 'brightness(0) saturate(100%) invert(97%) sepia(6%) saturate(53%) hue-rotate(332deg) brightness(114%) contrast(80%)'
+                    : 'none',
+                }}
+                onClick={() =>
+                  setFavoriteAnimeList((preState) => {
+                    const isDuplicate = preState.some((item) => item.mal_id === anime.mal_id);
 
-                      if (isDuplicate) {
-                        return preState.filter((item) => item.mal_id !== anime.mal_id);
-                      }
-                      return [
-                        ...preState,
-                        {
-                          mal_id: anime.mal_id,
-                          title: anime.title_japanese,
-                          url: anime.url,
-                          image_url: anime.images.jpg.image_url,
-                          aired_from: anime.aired.from,
-                        },
-                      ];
-                    })
-                  }
-                />
-              </Box>
+                    if (isDuplicate) {
+                      return preState.filter((item) => item.mal_id !== anime.mal_id);
+                    }
+                    return [
+                      ...preState,
+                      {
+                        mal_id: anime.mal_id,
+                        title: anime.title_japanese,
+                        url: anime.url,
+                        image_url: anime.images.jpg.image_url,
+                        aired_from: anime.aired.from,
+                      },
+                    ];
+                  })
+                }
+              />
             </Box>
-          ))}
-        </Box>
-      )}
+          </Box>
+        ))}
+      </Box>
       {dispSeasonAnimeCount < seasonAnimeTotalCount && (
         <Box
           sx={{
