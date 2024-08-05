@@ -4,7 +4,7 @@ import { Colors } from '@/common/Colors';
 import { GlobalContext } from '@/contexts/GlobalContext';
 import theme from '@/theme';
 import { FavoriteAnime } from '@/types/enum/FavoriteAnime';
-import { Button, Dialog, DialogActions, DialogTitle, Menu, MenuItem, Typography } from '@mui/material';
+import { Button, Dialog, DialogActions, DialogTitle, Menu, MenuItem, Snackbar, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import { MouseEvent, useContext, useState } from 'react';
 
@@ -13,6 +13,9 @@ import { MouseEvent, useContext, useState } from 'react';
  */
 export const MyPage = () => {
   const { favoriteAnimeList, setFavoriteAnimeList } = useContext(GlobalContext);
+
+  // スナックバーが表示されているかどうか
+  const [isOpenSnackbar, setIsOpenSnackbar] = useState<boolean>(false);
 
   // 削除ダイアログのが表示されているかどうか
   const [openDialog, setOpenDialog] = useState<boolean>(false);
@@ -43,6 +46,7 @@ export const MyPage = () => {
   const handleRemove = () => {
     setOpenDialog(false);
     setFavoriteAnimeList([]);
+    setIsOpenSnackbar(true);
   };
 
   /**
@@ -222,6 +226,23 @@ export const MyPage = () => {
           </Button>
         </DialogActions>
       </Dialog>
+      <Snackbar
+        open={isOpenSnackbar}
+        autoHideDuration={2000}
+        onClose={() => setIsOpenSnackbar(false)}
+        message="お気に入りを全て削除しました"
+        ContentProps={{
+          sx: {
+            fontSize: '1.2rem',
+            color: Colors.gray700,
+            backgroundColor: Colors.purple200,
+            padding: '0.4rem 1rem',
+            [theme.breakpoints.up('sm')]: {
+              minWidth: '18.8rem',
+            },
+          },
+        }}
+      />
     </>
   );
 };
