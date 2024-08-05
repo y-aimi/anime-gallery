@@ -3,15 +3,29 @@
 import { Colors } from '@/common/Colors';
 import { GlobalContext } from '@/contexts/GlobalContext';
 import theme from '@/theme';
-import { Typography } from '@mui/material';
+import { Button, Dialog, DialogActions, DialogTitle, Typography } from '@mui/material';
 import { Box } from '@mui/system';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 
 /**
  * マイページ
  */
 export const MyPage = () => {
   const { favoriteAnimeList, setFavoriteAnimeList } = useContext(GlobalContext);
+
+  // 削除ダイアログのが表示されているかどうか
+  const [open, setOpen] = useState<boolean>(false);
+
+  // 削除処理
+  const handleRemove = () => {
+    setOpen(false);
+    setFavoriteAnimeList([]);
+  };
+
+  // 削除キャンセル処理
+  const handleCloseDialog = () => {
+    setOpen(false);
+  };
 
   return (
     <>
@@ -48,7 +62,7 @@ export const MyPage = () => {
           alt="trash"
           src="/trash.svg"
           sx={{ width: '1.8rem', height: '1.8rem' }}
-          onClick={() => setFavoriteAnimeList([])}
+          onClick={() => setOpen(true)}
         />
       </Box>
       <Box
@@ -116,6 +130,50 @@ export const MyPage = () => {
           ))}
         </Box>
       </Box>
+      <Dialog open={open} onClose={handleCloseDialog} aria-labelledby="dialog-title">
+        <DialogTitle
+          id="dialog-title"
+          sx={{
+            fontSize: '1.2rem',
+            color: Colors.gray700,
+            textAlign: 'center',
+            padding: '2.4rem 2.6rem 5.6rem 2.6rem',
+          }}
+        >
+          お気に入りを
+          <br />
+          全て削除しますか？
+        </DialogTitle>
+        <DialogActions
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '1.6rem',
+            paddingBottom: '2.4rem',
+            '& > *:not(:first-of-type)': {
+              margin: 0,
+            },
+          }}
+        >
+          <Button
+            onClick={handleRemove}
+            sx={{
+              fontSize: '1.2rem',
+              fontWeight: 'bold',
+              backgroundColor: Colors.red900,
+              color: Colors.white,
+              width: '12.8rem',
+              borderRadius: '1rem',
+            }}
+            autoFocus
+          >
+            削除
+          </Button>
+          <Button onClick={handleCloseDialog} sx={{ fontSize: '1.2rem', color: Colors.gray400 }}>
+            キャンセル
+          </Button>
+        </DialogActions>
+      </Dialog>
     </>
   );
 };
