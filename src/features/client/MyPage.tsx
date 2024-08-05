@@ -3,9 +3,10 @@
 import { Colors } from '@/common/Colors';
 import { GlobalContext } from '@/contexts/GlobalContext';
 import theme from '@/theme';
-import { Button, Dialog, DialogActions, DialogTitle, Typography } from '@mui/material';
+import { FavoriteAnime } from '@/types/enum/FavoriteAnime';
+import { Button, Dialog, DialogActions, DialogTitle, Menu, MenuItem, Typography } from '@mui/material';
 import { Box } from '@mui/system';
-import { useContext, useState } from 'react';
+import { MouseEvent, useContext, useState } from 'react';
 
 /**
  * マイページ
@@ -14,21 +15,61 @@ export const MyPage = () => {
   const { favoriteAnimeList, setFavoriteAnimeList } = useContext(GlobalContext);
 
   // 削除ダイアログのが表示されているかどうか
-  const [open, setOpen] = useState<boolean>(false);
+  const [openDialog, setOpenDialog] = useState<boolean>(false);
 
-  // 削除処理
+  // ぶら下げる元のElement
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  // ソートメニューが開いているかどうか
+  const isOpenSort = Boolean(anchorEl);
+
+  /**
+   * ソートボタンクリック処理
+   * @param event MouseEvent<HTMLImageElement>
+   */
+  const handleClickSort = (event: MouseEvent<HTMLImageElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  /**
+   * ソートメニューを閉じる処理
+   */
+  const handleCloseSort = () => {
+    setAnchorEl(null);
+  };
+
+  /**
+   * 削除処理
+   */
   const handleRemove = () => {
-    setOpen(false);
+    setOpenDialog(false);
     setFavoriteAnimeList([]);
   };
 
-  // 削除キャンセル処理
+  /**
+   * 削除キャンセル処理
+   */
   const handleCloseDialog = () => {
-    setOpen(false);
+    setOpenDialog(false);
+  };
+
+  /**
+   * お気に入りアニメ一覧ソート処理
+   *
+   * @param sortMethod (animeList: FavoriteAnime[]) => FavoriteAnime[]
+   */
+  const sortFavoriteAnimeList = (sortMethod: (animeList: FavoriteAnime[]) => FavoriteAnime[]) => {
+    setFavoriteAnimeList(sortMethod(favoriteAnimeList));
+    setAnchorEl(null);
   };
 
   return (
     <>
+      <Menu id="sort-menu" anchorEl={anchorEl} open={isOpenSort} onClose={handleCloseSort} aria-hidden={false}>
+        <MenuItem onClick={() => sortFavoriteAnimeList(sortByTitleAsc)}>タイトル昇順</MenuItem>
+        <MenuItem onClick={() => sortFavoriteAnimeList(sortByTitleDesc)}>タイトル降順</MenuItem>
+        <MenuItem onClick={() => sortFavoriteAnimeList(sortByAiredAsc)}>放送開始日昇順</MenuItem>
+        <MenuItem onClick={() => sortFavoriteAnimeList(sortByAiredDesc)}>放送開始日降順</MenuItem>
+      </Menu>
       <Box
         sx={{
           display: 'flex',
@@ -55,14 +96,20 @@ export const MyPage = () => {
           >
             お気に入りアニメ一覧
           </Typography>
-          <Box component="img" alt="sort" src="/sort_button.svg" sx={{ width: '3.2rem', height: '3.2rem' }} />
+          <Box
+            component="img"
+            alt="sort"
+            src="/sort_button.svg"
+            sx={{ width: '3.2rem', height: '3.2rem' }}
+            onClick={handleClickSort}
+          />
         </Box>
         <Box
           component="img"
           alt="trash"
           src="/trash.svg"
           sx={{ width: '1.8rem', height: '1.8rem' }}
-          onClick={() => setOpen(true)}
+          onClick={() => setOpenDialog(true)}
         />
       </Box>
       <Box
@@ -120,6 +167,7 @@ export const MyPage = () => {
                           title: anime.title,
                           url: anime.url,
                           image_url: anime.image_url,
+                          aired_from: anime.aired_from,
                         },
                       ];
                     })
@@ -130,7 +178,7 @@ export const MyPage = () => {
           ))}
         </Box>
       </Box>
-      <Dialog open={open} onClose={handleCloseDialog} aria-labelledby="dialog-title">
+      <Dialog open={openDialog} onClose={handleCloseDialog} aria-labelledby="dialog-title">
         <DialogTitle
           id="dialog-title"
           sx={{
@@ -176,4 +224,48 @@ export const MyPage = () => {
       </Dialog>
     </>
   );
+};
+
+/**
+ * タイトル昇順にソートして返却
+ * @param animeList FavoriteAnime[]
+ * @returns タイトル昇順にソートされたanimeList
+ */
+const sortByTitleAsc = (animeList: FavoriteAnime[]): FavoriteAnime[] => {
+  return animeList.slice().sort((a, b) => a.title.localeCompare(b.title));
+};
+
+/**
+ * タイトル降順にソートして返却
+ * @param animeList FavoriteAnime[]
+ * @returns タイトル降順にソートされたanimeList
+ */
+const sortByTitleDesc = (animeList: FavoriteAnime[]): FavoriteAnime[] => {
+  return animeList.slice().sort((a, b) => b.title.localeCompare(a.title));
+};
+
+/**
+ * 放送日昇順にソートして返却
+ * @param animeList FavoriteAnime[]
+ * @returns 放送日昇順にソートされたanimeList
+ */
+const sortByAiredAsc = (animeList: FavoriteAnime[]): FavoriteAnime[] => {
+  return animeList.slice().sort((a, b) => {
+    if (a.aired_from === null) return 1;
+    if (b.aired_from === null) return -1;
+    return a.aired_from.localeCompare(b.aired_from);
+  });
+};
+
+/**
+ * 放送日降順にソートして返却
+ * @param animeList FavoriteAnime[]
+ * @returns 放送日降順にソートされたanimeList
+ */
+const sortByAiredDesc = (animeList: FavoriteAnime[]): FavoriteAnime[] => {
+  return animeList.slice().sort((a, b) => {
+    if (a.aired_from === null) return 1;
+    if (b.aired_from === null) return -1;
+    return b.aired_from.localeCompare(a.aired_from);
+  });
 };

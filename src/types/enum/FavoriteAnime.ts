@@ -6,4 +6,5 @@ export type FavoriteAnime = {
   title: string;
   url: string;
   image_url: string;
+  aired_from: string | null;
 };

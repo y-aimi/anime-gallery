@@ -252,6 +252,7 @@ export const SearchSeasonsAnime = () => {
                           title: anime.title,
                           url: anime.url,
                           image_url: anime.images.jpg.image_url,
+                          aired_from: anime.aired.from,
                         },
                       ];
                     })
