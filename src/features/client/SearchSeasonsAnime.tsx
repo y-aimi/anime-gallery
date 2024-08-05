@@ -249,7 +249,7 @@ export const SearchSeasonsAnime = () => {
                         ...preState,
                         {
                           mal_id: anime.mal_id,
-                          title: anime.title,
+                          title: anime.title_japanese,
                           url: anime.url,
                           image_url: anime.images.jpg.image_url,
                           aired_from: anime.aired.from,

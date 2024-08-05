@@ -126,7 +126,7 @@ export const MyPage = () => {
               <Box component="a" href={anime.url} target="_blank" sx={{ display: 'flex' }}>
                 <Box
                   component="img"
-                  alt={anime.title}
+                  alt={anime.title ?? 'title'}
                   src={anime.image_url}
                   sx={{ width: '8.8rem', height: '11rem', objectFit: 'cover' }}
                 />
@@ -232,7 +232,12 @@ export const MyPage = () => {
  * @returns タイトル昇順にソートされたanimeList
  */
 const sortByTitleAsc = (animeList: FavoriteAnime[]): FavoriteAnime[] => {
-  return animeList.slice().sort((a, b) => a.title.localeCompare(b.title));
+  return animeList.slice().sort((a, b) => {
+    if (a.title === null) return 1;
+    if (b.title === null) return -1;
+
+    return a.title.localeCompare(b.title);
+  });
 };
 
 /**
@@ -241,7 +246,12 @@ const sortByTitleAsc = (animeList: FavoriteAnime[]): FavoriteAnime[] => {
  * @returns タイトル降順にソートされたanimeList
  */
 const sortByTitleDesc = (animeList: FavoriteAnime[]): FavoriteAnime[] => {
-  return animeList.slice().sort((a, b) => b.title.localeCompare(a.title));
+  return animeList.slice().sort((a, b) => {
+    if (a.title === null) return 1;
+    if (b.title === null) return -1;
+
+    return b.title.localeCompare(a.title);
+  });
 };
 
 /**
