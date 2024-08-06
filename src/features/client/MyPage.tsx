@@ -70,10 +70,18 @@ export const MyPage = () => {
   return (
     <>
       <Menu id="sort-menu" anchorEl={anchorEl} open={isOpenSort} onClose={handleCloseSort} aria-hidden={false}>
-        <MenuItem onClick={() => sortFavoriteAnimeList(sortByTitleAsc)}>タイトル昇順</MenuItem>
-        <MenuItem onClick={() => sortFavoriteAnimeList(sortByTitleDesc)}>タイトル降順</MenuItem>
-        <MenuItem onClick={() => sortFavoriteAnimeList(sortByAiredAsc)}>放送開始日昇順</MenuItem>
-        <MenuItem onClick={() => sortFavoriteAnimeList(sortByAiredDesc)}>放送開始日降順</MenuItem>
+        <MenuItem onClick={() => sortFavoriteAnimeList(sortByTitleAsc)} sx={{ fontSize: '1.4rem' }}>
+          タイトル昇順
+        </MenuItem>
+        <MenuItem onClick={() => sortFavoriteAnimeList(sortByTitleDesc)} sx={{ fontSize: '1.4rem' }}>
+          タイトル降順
+        </MenuItem>
+        <MenuItem onClick={() => sortFavoriteAnimeList(sortByAiredAsc)} sx={{ fontSize: '1.4rem' }}>
+          放送開始日昇順
+        </MenuItem>
+        <MenuItem onClick={() => sortFavoriteAnimeList(sortByAiredDesc)} sx={{ fontSize: '1.4rem' }}>
+          放送開始日降順
+        </MenuItem>
       </Menu>
       <Box
         sx={{
@@ -91,9 +99,9 @@ export const MyPage = () => {
         >
           <Typography
             sx={{
-              fontSize: '1.6rem',
+              fontSize: '1.8rem',
               fontWeight: 'bold',
-              margin: '1.4rem 0 1.8rem 0',
+              margin: '1.6rem 0',
               [theme.breakpoints.up('md')]: {
                 fontSize: '2.4rem',
               },
@@ -104,7 +112,7 @@ export const MyPage = () => {
           <Box
             component="img"
             alt="sort"
-            src="/sort_button.svg"
+            src="/icons/sort_button.svg"
             sx={{ width: '3.2rem', height: '3.2rem' }}
             onClick={handleClickSort}
           />
@@ -112,8 +120,8 @@ export const MyPage = () => {
         <Box
           component="img"
           alt="trash"
-          src="/trash.svg"
-          sx={{ width: '1.8rem', height: '1.8rem' }}
+          src="/icons/trash.svg"
+          sx={{ width: '2.2rem', height: '2.2rem' }}
           onClick={() => setIsOpenDialog(true)}
         />
       </Box>
@@ -124,7 +132,13 @@ export const MyPage = () => {
         }}
       >
         <Box
-          sx={{ display: 'flex', gap: '1rem 1.6rem', flexWrap: 'wrap', justifyContent: 'center', margin: '1.6rem 0' }}
+          sx={{
+            display: 'flex',
+            gap: '1rem 1.6rem',
+            flexWrap: 'wrap',
+            justifyContent: 'center',
+            marginBottom: '3.2rem',
+          }}
         >
           {favoriteAnimeList?.map((anime) => (
             <Box key={anime.mal_id} sx={{ display: 'flex', flexDirection: 'column' }}>
@@ -133,7 +147,7 @@ export const MyPage = () => {
                   component="img"
                   alt={anime.title ?? 'title'}
                   src={anime.image_url}
-                  sx={{ width: '8.8rem', height: '11rem', objectFit: 'cover' }}
+                  sx={{ width: '9.6rem', height: '11.2rem', objectFit: 'cover' }}
                 />
               </Box>
               <Box
@@ -143,8 +157,8 @@ export const MyPage = () => {
                   alignItems: 'center',
                   paddingRight: '0.1rem',
                   backgroundColor: Colors.white,
-                  width: '8.8rem',
-                  height: '1.8rem',
+                  width: '9.6rem',
+                  height: '2.4rem',
                 }}
               >
                 <Typography
@@ -154,6 +168,7 @@ export const MyPage = () => {
                     whiteSpace: 'nowrap',
                     fontSize: '1rem',
                     color: Colors.gray900,
+                    paddingLeft: '0.1rem',
                   }}
                 >
                   {anime.title}
@@ -161,10 +176,10 @@ export const MyPage = () => {
                 <Box
                   component="img"
                   alt="fav"
-                  src="/favorite.svg"
+                  src="/icons/favorite.svg"
                   sx={{
-                    width: '1.6rem',
-                    height: '1.6rem',
+                    width: '2.4rem',
+                    height: '2.4rem',
                     filter: !favoriteAnimeList.some((item) => item.mal_id === anime.mal_id)
                       ? 'brightness(0) saturate(100%) invert(97%) sepia(6%) saturate(53%) hue-rotate(332deg) brightness(114%) contrast(80%)'
                       : 'none',
@@ -198,7 +213,7 @@ export const MyPage = () => {
         <DialogTitle
           id="dialog-title"
           sx={{
-            fontSize: '1.2rem',
+            fontSize: '1.6rem',
             color: Colors.gray700,
             textAlign: 'center',
             padding: '2.4rem 2.6rem 5.6rem 2.6rem',
@@ -222,7 +237,7 @@ export const MyPage = () => {
           <Button
             onClick={handleRemove}
             sx={{
-              fontSize: '1.2rem',
+              fontSize: '1.6rem',
               fontWeight: 'bold',
               backgroundColor: Colors.red900,
               color: Colors.white,
@@ -233,7 +248,7 @@ export const MyPage = () => {
           >
             削除
           </Button>
-          <Button onClick={handleCloseDialog} sx={{ fontSize: '1.2rem', color: Colors.gray400 }}>
+          <Button onClick={handleCloseDialog} sx={{ fontSize: '1.6rem', color: Colors.gray400 }}>
             キャンセル
           </Button>
         </DialogActions>
@@ -245,7 +260,7 @@ export const MyPage = () => {
         message="お気に入りを全て削除しました"
         ContentProps={{
           sx: {
-            fontSize: '1.2rem',
+            fontSize: '1.4rem',
             color: Colors.gray700,
             backgroundColor: Colors.purple200,
             padding: '0.4rem 1rem',

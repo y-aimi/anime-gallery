@@ -6,6 +6,7 @@ module.exports = {
   endOfLine: 'auto', // ファイル末尾は改行
   printWidth: 120, // 1行の最大文字数をデフォルトから変更
   importOrder: [
+    '^@/api/(.*)$',
     '^@/app/(.*)$',
     '^@/common/(.*)$',
     '^@/contexts/(.*)$',

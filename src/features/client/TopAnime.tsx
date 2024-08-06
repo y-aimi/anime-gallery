@@ -18,9 +18,9 @@ export const TopAnime = (topAnimeData: TopAnimeResponse) => {
     <>
       <Typography
         sx={{
-          fontSize: '1.6rem',
+          fontSize: '1.8rem',
           fontWeight: 'bold',
-          margin: '1.4rem 0 0.8rem 0',
+          margin: '1.6rem 0 0.2rem 0',
           [theme.breakpoints.up('md')]: {
             fontSize: '2.4rem',
           },
@@ -37,7 +37,7 @@ export const TopAnime = (topAnimeData: TopAnimeResponse) => {
                 component="img"
                 alt={anime.title}
                 src={anime.images.jpg.image_url}
-                sx={{ width: '6.4rem', height: '8.0rem', objectFit: 'cover' }}
+                sx={{ width: '11.2rem', height: '12.8rem', objectFit: 'cover' }}
               />
             </Box>
             <Box
@@ -47,8 +47,8 @@ export const TopAnime = (topAnimeData: TopAnimeResponse) => {
                 alignItems: 'center',
                 paddingRight: '0.1rem',
                 backgroundColor: Colors.white,
-                width: '6.4rem',
-                height: '1.8rem',
+                width: '11.2rem',
+                height: '2.4rem',
               }}
             >
               <Typography
@@ -57,6 +57,7 @@ export const TopAnime = (topAnimeData: TopAnimeResponse) => {
                   overflow: 'hidden',
                   whiteSpace: 'nowrap',
                   fontSize: '1rem',
+                  paddingLeft: '0.1rem',
                   color: Colors.gray900,
                 }}
               >
@@ -65,10 +66,10 @@ export const TopAnime = (topAnimeData: TopAnimeResponse) => {
               <Box
                 component="img"
                 alt="fav"
-                src="/favorite.svg"
+                src="/icons/favorite.svg"
                 sx={{
-                  width: '1.6rem',
-                  height: '1.6rem',
+                  width: '2.4rem',
+                  height: '2.4rem',
                   filter: !favoriteAnimeList.some((item) => item.mal_id === anime.mal_id)
                     ? 'brightness(0) saturate(100%) invert(97%) sepia(6%) saturate(53%) hue-rotate(332deg) brightness(114%) contrast(80%)'
                     : 'none',

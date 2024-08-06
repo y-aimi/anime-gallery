@@ -16,12 +16,12 @@ export const Header = () => {
   return (
     <>
       <Drawer anchor="right" open={isOpen} onClose={() => setIsOpen(false)}>
-        <Box sx={{ display: 'flex', justifyContent: 'flex-end', padding: '0.7rem 2.5rem' }}>
+        <Box sx={{ display: 'flex', justifyContent: 'flex-end', padding: '1rem 2.3rem' }}>
           <Box
             component="img"
             alt="close"
-            src="/close.svg"
-            sx={{ width: '1.8rem', height: '1.8rem' }}
+            src="/icons/close.svg"
+            sx={{ width: '2rem', height: '2rem' }}
             onClick={() => setIsOpen(false)}
           />
         </Box>
@@ -95,7 +95,7 @@ export const Header = () => {
           flexDirection: 'row',
           justifyContent: 'flex-end',
           alignItems: 'center',
-          height: '3.2rem',
+          height: '4rem',
           backdropFilter: 'blur(5px)',
           backgroundColor: 'rgba(255, 255, 255, 0.25)',
           boxShadow: 'none',
@@ -105,7 +105,7 @@ export const Header = () => {
         <Box
           component="img"
           alt="menu"
-          src="/burger_menu.svg"
+          src="/icons/burger_menu.svg"
           sx={{ width: '2.7rem', height: '1.8rem' }}
           onClick={() => setIsOpen(true)}
         />

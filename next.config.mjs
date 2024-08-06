@@ -37,11 +37,6 @@ async function createNextConfig() {
           hostname: 'myanimelist.net',
           port: '',
         },
-        {
-          protocol: 'https',
-          hostname: 'localhost',
-          port: '4444',
-        },
       ],
     },
     env: {

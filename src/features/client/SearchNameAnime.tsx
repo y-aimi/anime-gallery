@@ -70,7 +70,7 @@ export const SearchNameAnime = () => {
     <>
       <Typography
         sx={{
-          fontSize: '1.6rem',
+          fontSize: '1.8rem',
           fontWeight: 'bold',
           margin: '1.4rem 0 1.8rem 0',
           [theme.breakpoints.up('md')]: {
@@ -117,7 +117,7 @@ export const SearchNameAnime = () => {
               fontSize: '1.6rem',
               color: Colors.gray300,
               top: '-0.8rem',
-              left: 0,
+              left: '-0.6rem',
             },
             '& .MuiOutlinedInput-root': {
               '& fieldset': {
@@ -131,19 +131,25 @@ export const SearchNameAnime = () => {
         <Box
           sx={{ display: 'flex', gap: '1rem 1.6rem', flexWrap: 'wrap', justifyContent: 'center', margin: '1.6rem 0' }}
         >
-          <Skeleton variant="rectangular" animation="wave" sx={{ width: '8.8rem', height: '12.8rem' }} />
-          <Skeleton variant="rectangular" animation="wave" sx={{ width: '8.8rem', height: '12.8rem' }} />
-          <Skeleton variant="rectangular" animation="wave" sx={{ width: '8.8rem', height: '12.8rem' }} />
-          <Skeleton variant="rectangular" animation="wave" sx={{ width: '8.8rem', height: '12.8rem' }} />
-          <Skeleton variant="rectangular" animation="wave" sx={{ width: '8.8rem', height: '12.8rem' }} />
-          <Skeleton variant="rectangular" animation="wave" sx={{ width: '8.8rem', height: '12.8rem' }} />
-          <Skeleton variant="rectangular" animation="wave" sx={{ width: '8.8rem', height: '12.8rem' }} />
-          <Skeleton variant="rectangular" animation="wave" sx={{ width: '8.8rem', height: '12.8rem' }} />
-          <Skeleton variant="rectangular" animation="wave" sx={{ width: '8.8rem', height: '12.8rem' }} />
+          <Skeleton variant="rectangular" animation="wave" sx={{ width: '9.6rem', height: '11.2rem' }} />
+          <Skeleton variant="rectangular" animation="wave" sx={{ width: '9.6rem', height: '11.2rem' }} />
+          <Skeleton variant="rectangular" animation="wave" sx={{ width: '9.6rem', height: '11.2rem' }} />
+          <Skeleton variant="rectangular" animation="wave" sx={{ width: '9.6rem', height: '11.2rem' }} />
+          <Skeleton variant="rectangular" animation="wave" sx={{ width: '9.6rem', height: '11.2rem' }} />
+          <Skeleton variant="rectangular" animation="wave" sx={{ width: '9.6rem', height: '11.2rem' }} />
+          <Skeleton variant="rectangular" animation="wave" sx={{ width: '9.6rem', height: '11.2rem' }} />
+          <Skeleton variant="rectangular" animation="wave" sx={{ width: '9.6rem', height: '11.2rem' }} />
+          <Skeleton variant="rectangular" animation="wave" sx={{ width: '9.6rem', height: '11.2rem' }} />
         </Box>
       ) : (
         <Box
-          sx={{ display: 'flex', gap: '1rem 1.6rem', flexWrap: 'wrap', justifyContent: 'center', margin: '1.6rem 0' }}
+          sx={{
+            display: 'flex',
+            gap: '1rem 1.6rem',
+            flexWrap: 'wrap',
+            justifyContent: 'center',
+            margin: '1.6rem 0 3.2rem 0',
+          }}
         >
           {searchResults?.data?.map((anime) => (
             <Box key={anime.mal_id} sx={{ display: 'flex', flexDirection: 'column' }}>
@@ -152,7 +158,7 @@ export const SearchNameAnime = () => {
                   component="img"
                   alt={anime.title}
                   src={anime.images.jpg.image_url}
-                  sx={{ width: '8.8rem', height: '11rem', objectFit: 'cover' }}
+                  sx={{ width: '9.6rem', height: '11.2rem', objectFit: 'cover' }}
                 />
               </Box>
               <Box
@@ -162,8 +168,8 @@ export const SearchNameAnime = () => {
                   alignItems: 'center',
                   paddingRight: '0.1rem',
                   backgroundColor: Colors.white,
-                  width: '8.8rem',
-                  height: '1.8rem',
+                  width: '9.6rem',
+                  height: '2.4rem',
                 }}
               >
                 <Typography
@@ -172,6 +178,7 @@ export const SearchNameAnime = () => {
                     overflow: 'hidden',
                     whiteSpace: 'nowrap',
                     fontSize: '1rem',
+                    paddingLeft: '0.1rem',
                     color: Colors.gray900,
                   }}
                 >
@@ -180,10 +187,10 @@ export const SearchNameAnime = () => {
                 <Box
                   component="img"
                   alt="fav"
-                  src="/favorite.svg"
+                  src="/icons/favorite.svg"
                   sx={{
-                    width: '1.6rem',
-                    height: '1.6rem',
+                    width: '2.4rem',
+                    height: '2.4rem',
                     filter: !favoriteAnimeList.some((item) => item.mal_id === anime.mal_id)
                       ? 'brightness(0) saturate(100%) invert(97%) sepia(6%) saturate(53%) hue-rotate(332deg) brightness(114%) contrast(80%)'
                       : 'none',
