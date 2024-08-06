@@ -252,6 +252,7 @@ export const SearchSeasonsAnime = () => {
                   sx={{
                     width: '2.4rem',
                     height: '2.4rem',
+                    cursor: 'pointer',
                     filter: !favoriteAnimeList.some((item) => item.mal_id === anime.mal_id)
                       ? 'brightness(0) saturate(100%) invert(97%) sepia(6%) saturate(53%) hue-rotate(332deg) brightness(114%) contrast(80%)'
                       : 'none',
@@ -300,6 +301,9 @@ const SearchButton = styled(Button)({
   [theme.breakpoints.up('xs')]: {
     ':focus': {
       backgroundColor: Colors.yellow100,
+    },
+    ':hover': {
+      backgroundColor: Colors.yellow300,
     },
   },
 });

@@ -21,7 +21,7 @@ export const Header = () => {
             component="img"
             alt="close"
             src="/icons/close.svg"
-            sx={{ width: '2rem', height: '2rem' }}
+            sx={{ width: '2rem', height: '2rem', cursor: 'pointer' }}
             onClick={() => setIsOpen(false)}
           />
         </Box>
@@ -36,6 +36,7 @@ export const Header = () => {
                 color: Colors.gray900,
                 textDecorationColor: Colors.gray900,
                 textDecoration: 'underline',
+                cursor: 'pointer',
               }}
               onClick={() => setIsOpen(false)}
             >
@@ -106,7 +107,7 @@ export const Header = () => {
           component="img"
           alt="menu"
           src="/icons/burger_menu.svg"
-          sx={{ width: '2.7rem', height: '1.8rem' }}
+          sx={{ width: '2.7rem', height: '1.8rem', cursor: 'pointer' }}
           onClick={() => setIsOpen(true)}
         />
       </AppBar>

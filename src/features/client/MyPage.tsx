@@ -113,7 +113,7 @@ export const MyPage = () => {
             component="img"
             alt="sort"
             src="/icons/sort_button.svg"
-            sx={{ width: '3.2rem', height: '3.2rem' }}
+            sx={{ width: '3.2rem', height: '3.2rem', cursor: 'pointer' }}
             onClick={handleClickSort}
           />
         </Box>
@@ -121,7 +121,7 @@ export const MyPage = () => {
           component="img"
           alt="trash"
           src="/icons/trash.svg"
-          sx={{ width: '2.2rem', height: '2.2rem' }}
+          sx={{ width: '2.2rem', height: '2.2rem', cursor: 'pointer' }}
           onClick={() => setIsOpenDialog(true)}
         />
       </Box>
@@ -180,6 +180,7 @@ export const MyPage = () => {
                   sx={{
                     width: '2.4rem',
                     height: '2.4rem',
+                    cursor: 'pointer',
                     filter: !favoriteAnimeList.some((item) => item.mal_id === anime.mal_id)
                       ? 'brightness(0) saturate(100%) invert(97%) sepia(6%) saturate(53%) hue-rotate(332deg) brightness(114%) contrast(80%)'
                       : 'none',
@@ -243,6 +244,11 @@ export const MyPage = () => {
               color: Colors.white,
               width: '12.8rem',
               borderRadius: '1rem',
+              [theme.breakpoints.up('xs')]: {
+                ':hover': {
+                  backgroundColor: Colors.red900,
+                },
+              },
             }}
             autoFocus
           >
